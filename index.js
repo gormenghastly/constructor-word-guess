@@ -14,11 +14,28 @@ var wordList = [
   'pappardelle'
 ];
 
+function startGame() {
+  console.log(
+    'pick a plate of pasta but guess the type of pasta first, one letter at at a time!'
+  );
+  getWord();
+}
 function getWord() {
   var rand = Math.floor(Math.random() * wordList.length);
   var randomWord = wordList[rand];
+  randomWord.createWord();
 }
 
 function playGame() {}
 
-function getGuess() {}
+function getGuess() {
+  inquirer
+    .prompt({
+      type: 'input',
+      name: 'playerGuess',
+      message: 'pick a letter!'
+    })
+    .then(function(response) {
+      word.checkGuess(response);
+    });
+}
